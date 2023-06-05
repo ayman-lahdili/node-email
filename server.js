@@ -1,19 +1,17 @@
 const express = require("express");
 const nodemailer = require("nodemailer");
 const bodyParser  = require("body-parser");
-const cors = require('cors');
+//const cors = require('cors');
 
 
 require('dotenv').config();
 
-const app = express(),
-    PORT = 3000,
-    URL = 'http://127.0.0.1' + ':' + PORT;
+const app = express();
 
 app.use(bodyParser.json());
-app.use(cors({
-    origin: 'http://localhost:5173'
-}));
+//app.use(cors({
+//origin: 'http://localhost:5173'
+//}));
 const transporter = nodemailer.createTransport({
     service: "hotmail",
     auth: {
@@ -52,8 +50,8 @@ app.post("/sendEmail", (req, res) => {
     //res.send("POST REQUEST SUCCESSFUL EMAIL SENT TO "+body.email);
 })
 
-app.listen(PORT, () => {
+app.listen('3000', () => {
 
-    console.log('Listening at '+ URL);  
+    console.log('Listening at 3000');  
 
 });
