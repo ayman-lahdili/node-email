@@ -1,7 +1,9 @@
 const express = require("express");
 const nodemailer = require("nodemailer");
 const bodyParser  = require("body-parser");
-//const cors = require('cors');
+const https = require("https");
+const fs = require("fs");
+const cors = require('cors');
 
 
 require('dotenv').config();
@@ -9,9 +11,9 @@ require('dotenv').config();
 const app = express();
 
 app.use(bodyParser.json());
-//app.use(cors({
-//origin: 'http://localhost:5173'
-//}));
+app.use(cors({
+origin: 'http://localhost:5173'
+}));
 const transporter = nodemailer.createTransport({
     service: "hotmail",
     auth: {
@@ -22,14 +24,13 @@ const transporter = nodemailer.createTransport({
         rejectUnauthorized: false
     }
 });
-
 app.get("/", (req, res) => {
     res.send("GET REQUEST SUCCESSFUL");
-})
 
+})
 app.post("/sendEmail", (req, res) => {
     const body = req.body;
-    console.log("received")
+    console.log("received");
     console.log(body);
 
     var options = {
@@ -45,13 +46,6 @@ app.post("/sendEmail", (req, res) => {
         } else {
           console.log('Email sent: ' + info.response);
         }
-    }); 
+    });
     res.send("true")
-    //res.send("POST REQUEST SUCCESSFUL EMAIL SENT TO "+body.email);
 })
-
-app.listen('3000', () => {
-
-    console.log('Listening at 3000');  
-
-});
