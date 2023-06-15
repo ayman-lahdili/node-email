@@ -24,6 +24,7 @@ const transporter = nodemailer.createTransport({
         rejectUnauthorized: false
     }
 });
+
 app.get("/", (req, res) => {
     res.send("GET REQUEST SUCCESSFUL");
 
@@ -49,3 +50,9 @@ app.post("/sendEmail", (req, res) => {
     });
     res.send("true")
 })
+
+app.listen('3000', () => {
+
+    console.log('Listening at 3000');  
+
+});
