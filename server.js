@@ -12,7 +12,8 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(cors({
-origin: 'http://localhost:5173'
+    origin: ['http://localhost:5173',
+            'http://ec2-18-119-132-251.us-east-2.compute.amazonaws.com']
 }));
 const transporter = nodemailer.createTransport({
     service: "hotmail",
@@ -51,7 +52,7 @@ app.post("/sendEmail", (req, res) => {
     res.send("true")
 })
 
-app.listen('3000', () => {
+app.listen('4000', () => {
 
     console.log('Listening at 3000');  
 
